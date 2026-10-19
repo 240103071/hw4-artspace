@@ -31,6 +31,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.artspace.ui.theme.ArtSpaceTheme
+import androidx.annotation.StringRes
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +56,39 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+data class Artwork(
+    @DrawableRes val imageRes: Int,
+    @StringRes val titleRes: Int,
+    @StringRes val authorRes: Int,
+    @StringRes val yearRes: Int
+)
+
+fun artworkFor(id: Int): Artwork = when (id) {
+    1 -> Artwork(
+        R.drawable.dombra_modern,
+        R.string.dombra_modern_title,
+        R.string.dombra_modern_author,
+        R.string.dombra_modern_year
+    )
+    2 -> Artwork(
+        R.drawable.dombra_modern,
+        R.string.dombra_kurmangazy_title,
+        R.string.dombra_kurmangazy_author,
+        R.string.dombra_kurmangazy_year
+    )
+    else -> Artwork(
+        R.drawable.dombra_modern,
+        R.string.dombra_ancient_title,
+        R.string.dombra_ancient_author,
+        R.string.dombra_ancient_year
+    )
+}
+
 @Composable
 fun ArtSpaceScreen(modifier: Modifier = Modifier) {
+    var currentArtwork by remember { mutableStateOf(1) }
+    val artwork = artworkFor(currentArtwork)
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -60,14 +98,14 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         ArtworkFrame(
-            imageRes = R.drawable.dombra_modern,
-            description = stringResource(R.string.dombra_modern_title),
+            imageRes = artwork.imageRes,
+            description = stringResource(artwork.titleRes),
             modifier = Modifier.weight(1f)
         )
         ArtworkInfo(
-            title = stringResource(R.string.dombra_modern_title),
-            author = stringResource(R.string.dombra_modern_author),
-            year = stringResource(R.string.dombra_modern_year)
+            title = stringResource(artwork.titleRes),
+            author = stringResource(artwork.authorRes),
+            year = stringResource(artwork.yearRes)
         )
         NavigationButtons(
             onPrevious = {},
