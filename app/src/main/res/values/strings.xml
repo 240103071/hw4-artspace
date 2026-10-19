@@ -4,11 +4,11 @@
     <string name="dombra_modern_author">Dinislam</string>
     <string name="dombra_modern_year">2025</string>
     <string name="dombra_kurmangazy_title">Қазақ үні</string>
-    <string name="dombra_kurmangazy_author">Dinislam</string>
-    <string name="dombra_kurmangazy_year">XIX ғасыр</string>
-    <string name="dombra_ancient_title">Алғашқы домбыра</string>
-    <string name="dombra_ancient_author">Dinislam</string>
-    <string name="dombra_ancient_year">Ежелгі дәуір</string>
+    <string name="dombra_kurmangazy_author">ИИ-иллюстрация (идея: Dinislam)</string>
+    <string name="dombra_kurmangazy_year">2026</string>
+    <string name="dombra_ancient_title">Middle of 20th</string>
+    <string name="dombra_ancient_author">Фото: Bertramz, CC BY-SA 4.0</string>
+    <string name="dombra_ancient_year">July 2024</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
 </resources>

@@ -71,13 +71,13 @@ fun artworkFor(id: Int): Artwork = when (id) {
         R.string.dombra_modern_year
     )
     2 -> Artwork(
-        R.drawable.dombra_modern,
+        R.drawable.dombra_kurmangazy,
         R.string.dombra_kurmangazy_title,
         R.string.dombra_kurmangazy_author,
         R.string.dombra_kurmangazy_year
     )
     else -> Artwork(
-        R.drawable.dombra_modern,
+        R.drawable.dombra_ancient,
         R.string.dombra_ancient_title,
         R.string.dombra_ancient_author,
         R.string.dombra_ancient_year
