@@ -108,8 +108,18 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
             year = stringResource(artwork.yearRes)
         )
         NavigationButtons(
-            onPrevious = {},
-            onNext = {}
+            onPrevious = {
+                currentArtwork = when (currentArtwork) {
+                    1 -> 3
+                    else -> currentArtwork - 1
+                }
+            },
+            onNext = {
+                currentArtwork = when (currentArtwork) {
+                    3 -> 1
+                    else -> currentArtwork + 1
+                }
+            }
         )
     }
 }
