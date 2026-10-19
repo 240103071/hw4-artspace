@@ -36,6 +36,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.runtime.saveable.rememberSaveable
 
 
@@ -110,7 +111,10 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
     ) {
         if (maxWidth > maxHeight) {
             Row(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .widthIn(max = 900.dp)
+                    .fillMaxSize(),
                 horizontalArrangement = Arrangement.spacedBy(24.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -136,7 +140,10 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
             }
         } else {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .widthIn(max = 900.dp)
+                    .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
