@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Art Space</string>
+    <string name="dombra_modern_title">Нағыз қазақ — домбыра</string>
+    <string name="dombra_modern_author">Dinislam</string>
+    <string name="dombra_modern_year">2025</string>
+    <string name="dombra_kurmangazy_title">Қазақ үні</string>
+    <string name="dombra_kurmangazy_author">Dinislam</string>
+    <string name="dombra_kurmangazy_year">XIX ғасыр</string>
+    <string name="dombra_ancient_title">Алғашқы домбыра</string>
+    <string name="dombra_ancient_author">Dinislam</string>
+    <string name="dombra_ancient_year">Ежелгі дәуір</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>
