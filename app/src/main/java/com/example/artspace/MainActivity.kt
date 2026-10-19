@@ -34,9 +34,9 @@ import com.example.artspace.ui.theme.ArtSpaceTheme
 import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.runtime.saveable.rememberSaveable
 
 
 class MainActivity : ComponentActivity() {
@@ -86,41 +86,76 @@ fun artworkFor(id: Int): Artwork = when (id) {
 
 @Composable
 fun ArtSpaceScreen(modifier: Modifier = Modifier) {
-    var currentArtwork by remember { mutableStateOf(1) }
+    var currentArtwork by rememberSaveable { mutableStateOf(1) }
     val artwork = artworkFor(currentArtwork)
 
-    Column(
+    val onPrevious = {
+        currentArtwork = when (currentArtwork) {
+            1 -> 3
+            else -> currentArtwork - 1
+        }
+    }
+    val onNext = {
+        currentArtwork = when (currentArtwork) {
+            3 -> 1
+            else -> currentArtwork + 1
+        }
+    }
+
+    BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
             .safeDrawingPadding()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+            .padding(24.dp)
     ) {
-        ArtworkFrame(
-            imageRes = artwork.imageRes,
-            description = stringResource(artwork.titleRes),
-            modifier = Modifier.weight(1f)
-        )
-        ArtworkInfo(
-            title = stringResource(artwork.titleRes),
-            author = stringResource(artwork.authorRes),
-            year = stringResource(artwork.yearRes)
-        )
-        NavigationButtons(
-            onPrevious = {
-                currentArtwork = when (currentArtwork) {
-                    1 -> 3
-                    else -> currentArtwork - 1
-                }
-            },
-            onNext = {
-                currentArtwork = when (currentArtwork) {
-                    3 -> 1
-                    else -> currentArtwork + 1
+        if (maxWidth > maxHeight) {
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.spacedBy(24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ArtworkFrame(
+                    imageRes = artwork.imageRes,
+                    description = stringResource(artwork.titleRes),
+                    modifier = Modifier.weight(1f)
+                )
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    ArtworkInfo(
+                        title = stringResource(artwork.titleRes),
+                        author = stringResource(artwork.authorRes),
+                        year = stringResource(artwork.yearRes)
+                    )
+                    NavigationButtons(
+                        onPrevious = onPrevious,
+                        onNext = onNext
+                    )
                 }
             }
-        )
+        } else {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                ArtworkFrame(
+                    imageRes = artwork.imageRes,
+                    description = stringResource(artwork.titleRes),
+                    modifier = Modifier.weight(1f)
+                )
+                ArtworkInfo(
+                    title = stringResource(artwork.titleRes),
+                    author = stringResource(artwork.authorRes),
+                    year = stringResource(artwork.yearRes)
+                )
+                NavigationButtons(
+                    onPrevious = onPrevious,
+                    onNext = onNext
+                )
+            }
+        }
     }
 }
 
